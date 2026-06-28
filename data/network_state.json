@@ -1,0 +1,223 @@
+{
+  "vlans": [
+    {
+      "id": 10,
+      "name": "HR",
+      "color": "cyan"
+    },
+    {
+      "id": 20,
+      "name": "FINANCE",
+      "color": "green"
+    },
+    {
+      "id": 30,
+      "name": "IT",
+      "color": "blue"
+    },
+    {
+      "id": 40,
+      "name": "SERVERS",
+      "color": "amber"
+    },
+    {
+      "id": 50,
+      "name": "ATTACKER",
+      "color": "red"
+    }
+  ],
+  "switches": [
+    {
+      "id": "CORE-SW",
+      "vlan": null,
+      "type": "layer3"
+    },
+    {
+      "id": "HR-SW",
+      "vlan": 10,
+      "type": "layer2",
+      "uplink": "CORE-SW"
+    },
+    {
+      "id": "FIN-SW",
+      "vlan": 20,
+      "type": "layer2",
+      "uplink": "CORE-SW"
+    },
+    {
+      "id": "IT-SW",
+      "vlan": 30,
+      "type": "layer2",
+      "uplink": "CORE-SW"
+    },
+    {
+      "id": "SERVER-SW",
+      "vlan": 40,
+      "type": "layer2",
+      "uplink": "CORE-SW"
+    }
+  ],
+  "devices": [
+    {
+      "id": "HR-PC-1",
+      "ip": "192.168.10.100",
+      "vlan": 10,
+      "parent": "HR-SW",
+      "type": "pc"
+    },
+    {
+      "id": "HR-PC-2",
+      "ip": "192.168.10.101",
+      "vlan": 10,
+      "parent": "HR-SW",
+      "type": "pc"
+    },
+    {
+      "id": "HR-PC-3",
+      "ip": "192.168.10.102",
+      "vlan": 10,
+      "parent": "HR-SW",
+      "type": "pc"
+    },
+    {
+      "id": "FINANCE-PC-1",
+      "ip": "192.168.20.100",
+      "vlan": 20,
+      "parent": "FIN-SW",
+      "type": "pc"
+    },
+    {
+      "id": "FINANCE-PC-2",
+      "ip": "192.168.20.101",
+      "vlan": 20,
+      "parent": "FIN-SW",
+      "type": "pc"
+    },
+    {
+      "id": "FINANCE-PC-3",
+      "ip": "192.168.20.102",
+      "vlan": 20,
+      "parent": "FIN-SW",
+      "type": "pc"
+    },
+    {
+      "id": "IT-PC-1",
+      "ip": "192.168.30.100",
+      "vlan": 30,
+      "parent": "IT-SW",
+      "type": "pc"
+    },
+    {
+      "id": "IT-PC-2",
+      "ip": "192.168.30.101",
+      "vlan": 30,
+      "parent": "IT-SW",
+      "type": "pc"
+    },
+    {
+      "id": "IT-PC-3",
+      "ip": "192.168.30.102",
+      "vlan": 30,
+      "parent": "IT-SW",
+      "type": "pc"
+    },
+    {
+      "id": "DHCP-SERVER",
+      "ip": "192.168.40.20",
+      "vlan": 40,
+      "parent": "SERVER-SW",
+      "type": "server"
+    },
+    {
+      "id": "WEB-SERVER",
+      "ip": "192.168.40.10",
+      "vlan": 40,
+      "parent": "SERVER-SW",
+      "type": "server"
+    },
+    {
+      "id": "ATTACKER-PC",
+      "ip": "192.168.50.100",
+      "vlan": 50,
+      "parent": "IT-SW",
+      "type": "attacker"
+    }
+  ],
+  "acls": [
+    {
+      "id": 110,
+      "description": "FINANCE -> HR: DENY",
+      "hits": 128
+    },
+    {
+      "id": 120,
+      "description": "ATTACKER -> SERVERS: DENY",
+      "hits": 281
+    }
+  ],
+  "leases": [
+    {
+      "pool_name": "VLAN_10_POOL",
+      "ip": "192.168.10.100",
+      "mac": "00:1A:2B:3C:0A:11",
+      "vlan": 10,
+      "status": "ACTIVE"
+    },
+    {
+      "pool_name": "VLAN_20_POOL",
+      "ip": "192.168.20.100",
+      "mac": "00:1A:2B:3C:14:22",
+      "vlan": 20,
+      "status": "ACTIVE"
+    },
+    {
+      "pool_name": "VLAN_30_POOL",
+      "ip": "192.168.30.100",
+      "mac": "00:1A:2B:3C:1E:33",
+      "vlan": 30,
+      "status": "ACTIVE"
+    }
+  ],
+  "dns": [
+    {
+      "hostname": "www.project.local",
+      "record_type": "A",
+      "ip": "192.168.40.10",
+      "status": "RESOLVED"
+    },
+    {
+      "hostname": "hr-pc-1.nexus.local",
+      "record_type": "A",
+      "ip": "192.168.10.100",
+      "status": "RESOLVED"
+    },
+    {
+      "hostname": "fin-pc-1.nexus.local",
+      "record_type": "A",
+      "ip": "192.168.20.100",
+      "status": "RESOLVED"
+    },
+    {
+      "hostname": "it-pc-1.nexus.local",
+      "record_type": "A",
+      "ip": "192.168.30.100",
+      "status": "RESOLVED"
+    }
+  ],
+  "ssh_logs": [
+    {
+      "timestamp": "2026-06-16T14:00:00Z",
+      "source": "192.168.30.100",
+      "target": "192.168.40.10",
+      "user": "admin",
+      "status": "SUCCESS"
+    },
+    {
+      "timestamp": "2026-06-16T14:05:00Z",
+      "source": "192.168.50.100",
+      "target": "192.168.40.20",
+      "user": "root",
+      "status": "FAILED"
+    }
+  ]
+}

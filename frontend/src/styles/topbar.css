@@ -1,0 +1,75 @@
+.top-bar {
+  width: 100%;
+  height: 52px;
+  flex-shrink: 0;
+  background: rgba(20,12,30,0.98);
+  border-bottom: 1px solid rgba(180,120,255,0.15);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1.5rem;
+  z-index: 50;
+}
+
+.topbar-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  min-width: 200px;
+}
+
+.topbar-center {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: var(--text-primary);
+  text-align: center;
+  flex: 1;
+}
+
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 200px;
+  justify-content: flex-end;
+}
+
+.brand-logo {
+  color: #b47fff;
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+}
+
+.hamburger-btn {
+  background: transparent;
+  border: none;
+  color: rgba(240,230,255,0.5);
+  cursor: pointer;
+  font-size: 1.1rem;
+  padding: 4px;
+  transition: color 0.2s;
+}
+
+.hamburger-btn:hover { color: #b47fff; }
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent-green);
+  box-shadow: 0 0 8px var(--accent-green);
+  animation: pulseDot 2s infinite;
+}
+
+.status-text {
+  font-size: 0.7rem;
+  color: var(--accent-green);
+  letter-spacing: 0.08em;
+}
+
+@keyframes pulseDot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}

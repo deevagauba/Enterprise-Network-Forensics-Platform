@@ -1,0 +1,273 @@
+.topology-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: rgba(20,12,30,0.6);
+}
+
+.topology-container:fullscreen {
+  width: 100vw;
+  height: 100vh;
+  background: var(--bg-dark);
+}
+
+.topology-viewport {
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+  cursor: grab;
+  user-select: none;
+}
+
+.topology-viewport:active {
+  cursor: grabbing;
+}
+
+.topology-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1600px;
+  height: 900px;
+  transform-origin: 0 0;
+  will-change: transform;
+  transform: translate(var(--pan-x, 0px), var(--pan-y, 0px)) scale(var(--scale, 1));
+}
+
+/* --- TOPOLOGY LEGEND --- */
+.topology-legend {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: rgba(20,12,30,0.8);
+  border: 1px solid rgba(180,120,255,0.15);
+  border-radius: 8px;
+  padding: 10px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  backdrop-filter: blur(4px);
+  z-index: 50;
+  pointer-events: none;
+  min-width: 140px;
+}
+
+.legend-title {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: #b47fff;
+  text-transform: uppercase;
+  border-bottom: 1px solid rgba(180,120,255,0.2);
+  padding-bottom: 6px;
+  margin-bottom: 4px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: rgba(240,230,255,0.8);
+}
+
+.device-node.static {
+  position: static;
+  width: auto;
+  transform: none;
+  cursor: default;
+}
+.device-node.static:hover {
+  transform: none;
+}
+.legend-item .device-icon {
+  width: 24px;
+  height: 24px;
+  font-size: 0.65rem;
+}
+
+/* --- CONTROLS --- */
+.topology-controls {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  background: rgba(20,12,30,0.8);
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid rgba(180,120,255,0.15);
+  backdrop-filter: blur(4px);
+  z-index: 50;
+}
+
+.topology-controls button {
+  background: var(--bg-dark);
+  color: #b47fff;
+  border: 1px solid rgba(180,120,255,0.3);
+  width: 32px;
+  height: 32px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: var(--font-family);
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.topology-controls button:hover {
+  background: rgba(180,120,255,0.1);
+  border-color: #b47fff;
+}
+
+.topology-select {
+  background: var(--bg-dark);
+  color: #b47fff;
+  border: 1px solid rgba(180,120,255,0.3);
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-family: var(--font-family);
+  font-size: 0.75rem;
+  cursor: pointer;
+  outline: none;
+  margin-right: 8px;
+  transition: all 0.2s;
+}
+
+.topology-select:hover {
+  border-color: #b47fff;
+  background: rgba(180,120,255,0.1);
+}
+
+.topology-select option {
+  background: var(--bg-dark);
+  color: #f0e6ff;
+}
+
+.vlan-box {
+  position: absolute;
+  left: var(--vlan-x);
+  top: var(--vlan-y);
+  width: var(--vlan-w);
+  height: var(--vlan-h);
+  border: 2px dashed var(--vlan-color, var(--border-color));
+  border-radius: 8px;
+  background: transparent;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.vlan-label {
+  position: absolute;
+  top: -24px;
+  left: 0;
+  font-weight: 700;
+  font-size: 12px;
+  color: var(--vlan-color);
+}
+
+.device-node {
+  position: absolute;
+  left: var(--node-x);
+  top: var(--node-y);
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  transition: transform 0.2s;
+  z-index: 10;
+  width: 60px;
+}
+
+.device-node:hover {
+  transform: translate(-50%, -50%) scale(1.1);
+}
+
+.device-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  font-weight: bold;
+  flex-shrink: 0;
+  background-color: var(--bg-dark);
+}
+
+.device-label {
+  margin-top: 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  pointer-events: none;
+  background-color: var(--bg-dark);
+  padding: 2px 4px;
+  border-radius: 4px;
+}
+
+.device-model {
+  font-weight: normal;
+  color: rgba(240,230,255,0.7);
+  font-size: 0.55rem;
+  margin-bottom: 2px;
+  white-space: nowrap;
+}
+
+.device-name {
+  font-size: 0.65rem;
+  font-weight: bold;
+  color: #f0e6ff;
+  white-space: nowrap;
+}
+
+/* Specific Node Styles */
+.device-node.router .device-icon { border: 2px solid #00e5ff; background: rgba(0,229,255,0.1); border-radius: 50%; color: #00e5ff; }
+.device-node.switch .device-icon { border: 2px solid #b47fff; background: rgba(180,120,255,0.1); border-radius: 6px; color: #b47fff; }
+.device-node.pc .device-icon { border: 2px solid #7fff9f; background: rgba(127,255,159,0.05); color: #7fff9f; }
+.device-node.server .device-icon { border: 2px solid #ffcc66; background: rgba(255,204,102,0.05); border-radius: 6px; color: #ffcc66; }
+.device-node.attacker .device-icon { border: 2px solid #ff5577; background: rgba(255,85,119,0.1); box-shadow: 0 0 12px rgba(255,85,119,0.4); color: #ff5577; }
+.device-node.attacker .device-name { color: #ff5577; }
+
+.vlan-box.attacker {
+  background: rgba(255, 51, 85, 0.05);
+  animation: pulse-danger 2s infinite;
+}
+
+@keyframes pulse-danger {
+  0%, 100% { box-shadow: 0 0 0px rgba(255,85,119,0); }
+  50% { box-shadow: 0 0 12px rgba(255,85,119,0.3); }
+}
+
+.topology-svg-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.topology-tooltip {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  background: var(--bg-dark);
+  border: 1px solid var(--accent-cyan);
+  padding: 10px;
+  border-radius: 4px;
+  z-index: 100;
+  font-size: 0.75rem;
+  pointer-events: none;
+}

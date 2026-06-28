@@ -1,0 +1,125 @@
+.acl-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  flex: 1;
+  width: 100%;
+  overflow-y: auto;
+  min-height: 0;
+}
+
+.acl-cards {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  flex-shrink: 0;
+  min-height: 160px;
+}
+
+.acl-card {
+  flex: 1;
+  background: rgba(20,12,30,0.6);
+  border: 1px solid rgba(180,120,255,0.2);
+  border-radius: 8px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  transition: box-shadow 0.3s ease;
+}
+
+.actively-blocking {
+  box-shadow: 0 0 20px rgba(255,85,119,0.4);
+}
+
+.acl-card-header {
+  border-bottom: none;
+  margin-bottom: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.lock-icon {
+  color: #ff5577;
+}
+
+.rule-title {
+  color: #f0e6ff;
+  font-weight: 700;
+}
+
+.rule-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.rule-route {
+  font-weight: bold;
+}
+
+.badge-blocked {
+  background: rgba(255,85,119,0.15);
+  color: #ff5577;
+  border: 1px solid #ff5577 !important;
+}
+
+.rule-subtitle {
+  font-size: 0.8rem;
+  color: rgba(240,230,255,0.5);
+  margin-top: 4px;
+}
+
+.rule-timestamp {
+  font-size: 0.75rem;
+  color: rgba(240,230,255,0.4);
+  margin-top: auto;
+}
+
+.port-security-section {
+  margin-top: 16px;
+  flex-shrink: 0;
+}
+
+.port-security-header {
+  margin-bottom: 1rem;
+  color: #b47fff;
+  position: sticky;
+  top: 0;
+  background: var(--bg-panel);
+  padding: 4px 0;
+}
+
+.table-responsive-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.acl-table {
+  width: 100%;
+  font-size: 12px;
+  table-layout: fixed;
+}
+
+.acl-table td, .acl-table th {
+  padding: 0.5rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: left;
+}
+
+.acl-table th {
+  color: #b47fff;
+  border-bottom: 1px solid rgba(180,120,255,0.15);
+  background: transparent;
+  font-weight: 500;
+}
+
+.acl-table td {
+  border-bottom: 1px solid rgba(180, 120, 255, 0.05);
+}
+
+.acl-table tr:nth-child(even) { background: rgba(180,120,255,0.03); }
+.acl-table tr:hover { background: rgba(180,120,255,0.06); }
