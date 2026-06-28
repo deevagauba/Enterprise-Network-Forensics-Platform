@@ -25,3 +25,19 @@ venv/
 # Logs
 *.log
 logs/
+
+# Environment Variables & Secrets
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+*.cert
+secrets.json
+credentials.json
+config.local.json
+
+# Databases
+*.sqlite
+*.sqlite3
+*.db
